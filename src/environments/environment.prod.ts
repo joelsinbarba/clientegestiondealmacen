@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl:'http://store-system-uaa.herokuapp.com'
+  apiBaseUrl:'https://store-system-uaa.herokuapp.com'
 };
