@@ -6,11 +6,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ProductoService } from './producto.service';
 import { LoginComponent } from './login/login.component';
+import { ProductosComponent } from './productos/productos.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ProductosComponent,
+    ClientesComponent,
+    ProveedoresComponent
   ],
   imports: [
     BrowserModule,

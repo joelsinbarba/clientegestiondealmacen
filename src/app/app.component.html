@@ -29,7 +29,6 @@
 </div>
   </div> -->
 <div class="" id="main-container">
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
    <div class="mail-box">
                     <aside class="sm-side">
                         <div class="user-head">
@@ -69,8 +68,16 @@
                             </div><!-- /.modal -->
                         </div>
                         <ul class="inbox-nav inbox-divider">
-                            <li class="active">
-                                <a href="#"><i class="fa fa-barcode"></i> Productos <span class="label label-danger pull-right">{{productos.length}}</span></a>
+                            <li [ngClass]="{'active': paginaActual === 'productos'}">
+                                <a  (click)="onNavegar('productos')"><i class="fa fa-barcode"></i> Productos <span class="label label-danger pull-right"></span></a>
+  
+                            </li>
+                            <li [ngClass]="{'active': paginaActual === 'clientes'}">
+                                <a (click)="onNavegar('clientes')"><i class="fa fa-barcode"></i> Clientes <span class="label label-danger pull-right"></span></a>
+  
+                            </li>
+                            <li [ngClass]="{'active': paginaActual === 'proveedores'}">
+                                <a (click)="onNavegar('proveedores')"><i class="fa fa-barcode"></i> Proveedores <span class="label label-danger pull-right"></span></a>
   
                             </li>
                            
@@ -113,212 +120,11 @@
                         </div> -->
   
                     </aside>
-                    <aside class="lg-side">
-                        <div class="inbox-head">
-                            <h3>Productos</h3>
-                            <form action="#" class="pull-right position">
-                                <div class="input-append">
-                                    <input type="text" class="sr-input" placeholder="Buscar Productos">
-                                    <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="inbox-body">
-                           <div class="mail-option">
-           <!--                     <div class="chk-all">
-                                   <input type="checkbox" class="mail-checkbox mail-group-checkbox">
-                                   <div class="btn-group">
-                                       <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
-                                           All
-                                           <i class="fa fa-angle-down "></i>
-                                       </a>
-                                       <ul class="dropdown-menu">
-                                           <li><a href="#"> None</a></li>
-                                           <li><a href="#"> Read</a></li>
-                                           <li><a href="#"> Unread</a></li>
-                                       </ul>
-                                   </div>
-                               </div> -->
-  
-                             <!--   <div class="btn-group">
-                                   <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
-                                       <i class=" fa fa-refresh"></i>
-                                   </a>
-                               </div> -->
-                             <!--   <div class="btn-group hidden-phone">
-                                   <a data-toggle="dropdown" href="#" class="btn mini blue" aria-expanded="false">
-                                       More
-                                       <i class="fa fa-angle-down "></i>
-                                   </a>
-                                   <ul class="dropdown-menu">
-                                       <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                                       <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-                                       <li class="divider"></li>
-                                       <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                   </ul>
-                               </div> -->
-                             <!--   <div class="btn-group">
-                                   <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                       Move to
-                                       <i class="fa fa-angle-down "></i>
-                                   </a>
-                                   <ul class="dropdown-menu">
-                                       <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                                       <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-                                       <li class="divider"></li>
-                                       <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                   </ul>
-                               </div> -->
+                    <aside >
+                       <app-productos *ngIf="paginaActual == 'productos'"  class="lg-side"></app-productos>
+                       <app-clientes *ngIf="paginaActual == 'clientes'" class="lg-side"></app-clientes>
+                       <app-proveedores *ngIf="paginaActual == 'proveedores'"  class="lg-side"></app-proveedores>
 
-                               <div class="btn-group">
-                                <a (click)="onOpenModal(null,'agregar')" class="btn">
-                                    Nuevo Producto
-                                    <i class="fa fa-plus "></i>
-                                </a>
-                                  <!-- Modal -->
-                            <div aria-hidden="true" aria-labelledby="nuevoProductoModalLabel" role="dialog" tabindex="-1" id="agregarProductoModal" class="modal fade" style="display: none;">
-                              <div class="modal-dialog">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                          <h4 class="modal-title">Registrar Nuevo Producto</h4>
-                                      </div>
-                                      <div class="modal-body">
-                                          <form #agregarForm="ngForm" (ngSubmit)="onAgregarProducto(agregarForm)" class="form-horizontal">
-
-                                              <div class="form-group">
-                                                  <label class="col-lg-2 control-label">Descripcion</label>
-                                                  <div class="col-lg-10">
-                                                      <input type="text" name="descripcion" ngModel required placeholder="" id="cc" class="form-control">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group">
-                                                  <label class="col-lg-2 control-label">Precio</label>
-                                                  <div class="col-lg-10">
-                                                      <input type="number" name="precio" ngModel required placeholder="" id="inputPassword1" class="form-control">
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group">
-                                                <label class="col-lg-2 control-label">Existencia</label>
-                                                <div class="col-lg-10">
-                                                    <input type="number" name="existencia" ngModel required placeholder="" id="inputPassword1" class="form-control">
-                                                </div>
-                                            </div>
-
-                                              <div class="form-group">
-                                                  <div class="col-lg-offset-2 col-lg-10">
-                                                      <button type="button" id="agregar-producto-form" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                      <button [disabled]="agregarForm.invalid" class="btn btn-send" type="submit">Guardar</button>
-                                                  </div>
-                                              </div>
-                                          </form>
-                                      </div>
-                                  </div><!-- /.modal-content -->
-                              </div><!-- /.modal-dialog -->
-                          </div><!-- /.modal -->
-                                 <!-- Modal -->
-                                 <div aria-hidden="true" aria-labelledby="nuevoProductoModalLabel" role="dialog" tabindex="-1" id="editarProductoModal" class="modal fade" style="display: none;">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                              <h4 class="modal-title">Editar Producto</h4>
-                                          </div>
-                                          <div class="modal-body">
-                                            <form #editarForm="ngForm"  class="form-horizontal">
-
-                                              <div class="form-group">
-                                                  <label class="col-lg-2 control-label">Descripcion</label>
-                                                  <div class="col-lg-10">
-                                                      <input type="text" ngModel="{{producto?.descripcion}}" name="descripcion" ngModel required placeholder="" id="cc" class="form-control">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group">
-                                                  <label class="col-lg-2 control-label">Precio</label>
-                                                  <div class="col-lg-10">
-                                                      <input type="number" ngModel="{{producto?.precio}}" name="precio" ngModel required placeholder="" id="inputPassword1" class="form-control">
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group">
-                                                <label class="col-lg-2 control-label">Existencia</label>
-                                                <div class="col-lg-10">
-                                                    <input type="number" ngModel="{{producto?.existencia}}" name="existencia" ngModel required placeholder="" id="inputPassword1" class="form-control">
-                                                </div>
-                                            </div>
-
-                                              <div class="form-group">
-                                                  <div class="col-lg-offset-2 col-lg-10">
-                                                      <button type="button" id="agregar-producto-form" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                      <button (click)="onEditarProducto(editarForm.value)" class="btn btn-send" type="submit">Guardar</button>
-                                                  </div>
-                                              </div>
-                                          </form>
-                                          </div>
-                                      </div><!-- /.modal-content -->
-                                  </div><!-- /.modal-dialog -->
-                              </div><!-- /.modal -->
-                              <!-- Modal -->
-                            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="eliminarProductoModal" class="modal fade" style="display: none;">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <p><b>Seguro/a de que desea eliminar este producto? {{productoAEliminar?.descripcion}}</b></p>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-                                    <button (click)="onEliminarProducto(productoAEliminar?.codigoProducto!)" type="button" class="btn btn-danger" >Eliminar</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div><!-- /.modal -->
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                                    <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                                </ul>
-                            </div>
-  
-                               <ul class="unstyled inbox-pagination">
-                                   <li><span>{{productos.length}} productos</span></li>
- <!--                                   <li>
-                                       <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
-                                   </li>
-                                   <li>
-                                       <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
-                                   </li> -->
-                               </ul>
-                           </div>
-                            <table class="table table-inbox table-hover">
-                              <tbody>
-                                <tr class="" *ngFor="let producto of productos">
-<!--                                   <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
- --> 
-                                  <td class="inbox-small-cells">
-                                      {{producto.codigoProducto}}
-                                       <!--  <input type="checkbox" class="mail-checkbox"> -->
-                                    </td>
-                                    <td class="view-message  dont-show">{{producto.descripcion}}</td>
-                                    <td class="view-message ">Gs. {{producto.precio}}</td>
-                                    <td class="view-message button-group ">
-<!--                                     <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
- -->                                    <button (click)="onOpenModal(producto,'editar')" type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
-                                    <button (click)="onOpenModal(producto,'eliminar')" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                               
-                                
-                            
-                               
-                            </tbody>
-                            </table>
-                        </div>
                     </aside>
                 </div>
   </div>
