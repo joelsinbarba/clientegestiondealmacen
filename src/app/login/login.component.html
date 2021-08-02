@@ -1,15 +1,47 @@
 
-<div  style="height: 100vh;">
-
-    <div class="container">
-
-        <form class="form-signin">
-            <h1 class="form-signin-heading text-muted">Sign In</h1>
-            <input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input type="password" class="form-control" placeholder="Password" required="">
-            <button class="btn btn-lg btn-send btn-block" type="submit">
-                Sign In
-            </button>
-        </form>
+<div *ngIf="login"><app-contenido></app-contenido></div>
+<div *ngIf="!login">
+    <div class="loginScreen">
+        <div class="header">
     
-    </div></div>
+            <!--Content before waves-->
+            <div class="inner-header flex">
+            <!--Just the logo.. Don't mind this-->
+            <h3>Bienvenido/a a Store System</h3>
+            </div>
+            
+            <!--Waves Container-->
+            <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+            </svg>
+            </div>
+            <!--Waves end-->
+            
+            </div>
+            <!--Header ends-->
+            
+            <!--Content starts-->
+            <div class="content flex">
+              <form  (ngSubmit)="ingresar()" >
+                <input type="text" id="usuario" placeholder="Usuario" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"/>
+                <input type="password" id="password" placeholder="Contraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"/>
+                <button class="login-btn" >Ingresar</button>
+              </form>
+              <div class="bottom-container">
+                <p>Store System 2021</p>
+                <div>
+                
+            <!--Content ends-->
+    </div>
+    
+</div>

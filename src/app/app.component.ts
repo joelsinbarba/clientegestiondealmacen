@@ -12,16 +12,11 @@ import { ProductoService } from './producto.service';
 export class AppComponent implements OnInit {
 
   
-  public paginaActual: String = "productos";
-
   constructor(){
   }
 
   ngOnInit(){
   }
 
-  public onNavegar(pagina: String):void{
-   this.paginaActual = pagina;
-  }
 }
 

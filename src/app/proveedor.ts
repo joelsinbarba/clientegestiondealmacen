@@ -3,6 +3,6 @@ export interface Proveedor{
     ruc: string;
     nombre: string;
     direccion: string;
-    telefono: string;
+    ciudad: string;
     mail: string;
  }
